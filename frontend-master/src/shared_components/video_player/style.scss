@@ -1,0 +1,51 @@
+.surgi__player {
+  position: relative;
+
+  .floating__player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .player__controls {
+    display: flex;
+    background: #010000;
+    padding: 0.25rem 1rem;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+
+    .left__buttons {
+      display: flex;
+
+      div {
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    .playback__duration {
+      display: flex;
+    }
+
+    .right__buttons {
+      display: flex;
+      cursor: pointer;
+      
+      div {
+        padding: 0.25rem 0.5rem;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}

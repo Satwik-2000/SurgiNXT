@@ -1,0 +1,124 @@
+.file__upload__modal {
+    padding: 2.5rem;
+    min-width: 472px;
+  
+    .file__icon {
+      width: 12.5%;
+      height: 12.5%;
+    }
+  
+    .title {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+  
+    .subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      margin-top: 0.25rem;
+    }
+  
+    .file-drop {
+      cursor: pointer;
+      position: relative;
+      width: 100%;
+  
+      .upload__icon {
+        width: 48px;
+        margin-bottom: 1rem;
+      }
+  
+      .upload__title {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+  
+      .upload__subtitle {
+        font-size: 0.9rem;
+        font-weight: 400;
+        margin-top: 0.25rem;
+        margin-bottom: 1rem;
+      }
+  
+      .browse__btn {
+        background: #1488cc;
+        color: white;
+        padding: 0.5rem 2.5rem;
+        border-radius: 5px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  
+    .file-drop > .file-drop-target {
+      height: auto;
+      width: 100%;
+      border-radius: 2px;
+      border: 2px dashed rgba(0, 0, 0, 0.25);
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      transition: all ease-in-out 250ms;
+    }
+  
+    .file-drop > .file-drop-target.file-drop-dragging-over-frame {
+      border: none;
+      background-color: rgba(0, 0, 0, 0.1);
+      box-shadow: none;
+      z-index: 50;
+      opacity: 1;
+      transition: all ease-in-out 250ms;
+    }
+  
+    .file-drop > .file-drop-target.file-drop-dragging-over-target {
+      color: #1488cc;
+      transition: all ease-in-out 250ms;
+    }
+  
+    .hidden {
+      display: none;
+    }
+  
+    .file__actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 1rem;
+  
+      .cancel__btn {
+        border: 1px solid #808080;
+        color: #808080;
+        padding: 0.5rem 2.5rem;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: all ease-in-out 250ms;
+        filter: brightness(1);
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+  
+      .upload__btn {
+        background: #1488cc;
+        color: white;
+        padding: 0.5rem 2.5rem;
+        border-radius: 5px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        margin-left: 1rem;
+        outline: none;
+        cursor: pointer;
+        transition: all ease-in-out 250ms;
+        filter: brightness(1);
+        border: none;
+        
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+    }
+  }

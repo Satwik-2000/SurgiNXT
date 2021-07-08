@@ -1,0 +1,15 @@
+.default__view {
+  z-index: 4;
+  position: absolute;
+  top: 0.1rem;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  min-height: calc(100vh - 20rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  // width: 100%;
+}

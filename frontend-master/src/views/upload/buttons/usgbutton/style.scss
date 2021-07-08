@@ -1,0 +1,339 @@
+.upload__btn {
+  .center__btn {
+    cursor: pointer;
+    fill: #d5dafe;
+    transition: all ease-in-out 250ms;
+  }
+
+  .center__text {
+    transition: all ease-in-out 250ms;
+    fill: #00218a;
+  }
+
+  &:hover {
+    .center__btn {
+      fill: #00218a;
+      color: white;
+    }
+
+    .center__text {
+      fill: #ffffff;
+    }
+  }
+
+  &.selected {
+    .center__btn {
+      fill: #8ec951;
+      color:#00218a;
+    }
+
+    .center__text {
+      fill: #ffffff;
+    }
+  }
+}
+
+.usg__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}
+
+.operative__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}
+
+.usg__report__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill:#00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.clicked {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}
+
+.usg__vid__img {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+  
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.clicked {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      // fill: #00218A;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}
+
+.annotation__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}
+
+.post-operative__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+  
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  
+}
+

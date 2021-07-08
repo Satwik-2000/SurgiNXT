@@ -1,0 +1,129 @@
+.upload__btn {
+  .center__btn {
+    cursor: pointer;
+    fill: #d5dafe;
+    transition: all ease-in-out 250ms;
+  }
+
+  .center__text {
+    transition: all ease-in-out 250ms;
+    fill: #00218a;
+  }
+
+  &:hover {
+    .center__btn {
+      fill: #00218a;
+      color: white;
+    }
+
+    .center__text {
+      fill: #ffffff;
+    }
+  }
+
+  &.selected {
+    .center__btn {
+      fill: #d5dafe;
+      color: white;
+    }
+
+    .center__text {
+      fill: #ffffff;
+    }
+  }
+}
+
+.usg__btn,
+.pre-operative__btn,
+.operative__btn,
+.usg__report__btn,
+.annotation__btn,
+.post-operative__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover{
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+  &.selected{
+    .btn__bg{
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+      
+    }
+  }
+}
+
+.segmented__btn,
+.hand-annotation__btn,
+.post-annotation__btn,
+.phase-annotation__btn,
+.audio-description__btn,
+.usg-annotation__btn,
+.pre-annotation__btn {
+  cursor: pointer;
+
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #48bfe3;
+  }
+
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
+
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &:hover,
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #00218a;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.selected {
+    pointer-events: none;
+  }
+}
