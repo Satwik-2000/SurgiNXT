@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
 import { UploadMainButton } from "../../buttons";
 import FileUploadModal from "../../fileupload";
+import { AuthContext } from "../../../../contexts";
 import "./style.scss";
 
 export default function UploadDefaultView() {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
+  const currentUser = useContext(AuthContext).currentUser;
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
@@ -49,6 +51,8 @@ export default function UploadDefaultView() {
     else setClickWheelEnabled(true);
   }, [caseNumber]);
 
+  console.log(currentUser);
+
   return (
     <>
       <div className="default__view">
@@ -69,7 +73,7 @@ export default function UploadDefaultView() {
         <div className = "dashboard__input__wrapper">
           <input 
             type = "text"
-            placeholder = "Enter Case Name"
+            placeholder = "Case Name"
           />
         </div>} 
 

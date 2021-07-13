@@ -11,7 +11,20 @@ export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  async function signup(username, email, password) {}
+  async function register(email, password, firstname, lastname){
+    axios.post("http://203.110.240.168/api/surginxt/user/registration",{
+      email: email,
+      password : password,
+      first_name: firstname,
+      last_name: lastname,
+    })
+    .then((e) => {
+      console.log("AXIOS:", e);
+      // localStorage.setItem("auth_token", e.data?.token);
+      // localStorage.setItem("user_id", e.data?.id);
+      console.log(e.config.data);
+    })
+  }
 
   async function login(email, password) {
     axios
@@ -24,8 +37,10 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("auth_token", e.data?.token);
         localStorage.setItem("user_id", e.data?.id);
         setCurrentUser(e.data);
+        console.log(currentUser);
       });
   }
+  //console.log(currentUser.UserDetails["group"]);
 
   async function logout() {}
 
@@ -72,7 +87,7 @@ export default function AuthProvider({ children }) {
       value={{
         currentUser: currentUser,
         login: login,
-        signup: signup,
+        register: register,
       }}
     >
       {!loading && children}
