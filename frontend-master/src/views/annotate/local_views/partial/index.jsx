@@ -27,6 +27,7 @@ export default function AnnotatePartialView () {
         <div>
           <AnnotatePartialButton
             button = {location.state}
+            startafresh = {() => history.push("/segmentation")}
             //  onTopLeftClick={() => handleButtonClick("operative")};
             // goBack={() => history.push("/upload/partial")}
           />

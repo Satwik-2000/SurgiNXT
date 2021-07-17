@@ -40,7 +40,8 @@ export default function LoginViewWrapper() {
   useEffect(() => {
     if (currentUser !== null) {
       console.log("TAKING TO DASHBOARD");
-      history.push("/dashboard/demo");
+      //history.push("/dashboard/demo");
+      console.log(currentUser);
     }
   }, [currentUser]);
 
@@ -112,8 +113,11 @@ export default function LoginViewWrapper() {
   const loginHandler = async () => {
     login(email, password);
 
-    // () => history.push("/dashboard/demo")
+    history.push("/dashboard/demo")
   };
+  function registerHandler(){
+    history.push("/register");
+  }
 
   return (
     <div className="login__wrapper">
@@ -152,7 +156,7 @@ export default function LoginViewWrapper() {
             </div>
 
             <div className="message">Don't have an account?</div>
-            <div className="register">Register</div>
+            <div className="register" onClick = {registerHandler} >Register</div>
           </div>
         </div>
       </section>

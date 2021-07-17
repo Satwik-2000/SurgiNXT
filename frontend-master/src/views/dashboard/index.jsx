@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+
+import axios from "axios";
+
 import { Link, useParams } from "react-router-dom";
 import { DashboardBackground, HamburgerIcon, UserIcon } from "../../assets";
 import { AuthContext } from "../../contexts";
@@ -12,6 +15,8 @@ import {
 } from "./buttons";
 
 import "./style.scss";
+
+
 
 const getButtonFromType = (type) => {
   switch (type) {
@@ -39,9 +44,47 @@ const getButtonFromType = (type) => {
 };
 
 export default function DashboardViewWrapper() {
-  const { type } = useParams();
+  var { type } = useParams();
+  
   const [pathName, setPathName] = useState("demo");
+  var response;
   const currentUser = useContext(AuthContext).currentUser;
+  if (currentUser!== null && currentUser.UserDetails === undefined)
+    response = currentUser["group"];
+  if (currentUser!==null && currentUser.UserDetails !==undefined)
+    {response = (currentUser.UserDetails["group"]);
+    console.log(currentUser);}
+
+    if (response === 10)
+      type = "download";
+    if (response === 9)
+      type = "annotations";
+    if (response === 7)
+      type = "annotate";
+    if (response === 6)
+      type = "upload";
+    if (response === 8)
+      type = "stats";
+
+  // switch(response){
+  //   case 6: type = "annotate";
+  //   break;
+  //   case 7: type: "upload";
+  //   break;
+  //   case 8: type = "demo";
+  //   break;
+  //   case 9: type = "annotations";
+  //   break;
+  //   case 10: type = "download";
+  //   break;
+  //   default: type = "stats";
+
+  // }
+
+  // const apiURL = 'http://203.110.240.168/api/surginxt/groups';
+  // axios.get(apiURL).then((res)=> {
+  //   response = res.data.data[0];
+  // })
 
   useEffect(() => {
     setPathName(type);

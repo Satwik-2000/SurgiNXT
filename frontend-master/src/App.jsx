@@ -11,7 +11,8 @@ import {
   LoginViewWrapper,
   DashboardViewWrapper,
   UploadViewWrapper,
-  AnnotateViewWrapper
+  AnnotateViewWrapper,
+  RegisterViewWrapper
 } from "./views";
 import { PrivateRoute } from "./shared_components";
 import SegmentationViewWrapper from "./views/segmentation";
@@ -23,6 +24,8 @@ const App = () => {
           <Router>
             <Switch>
               <Route path="/login" exact component={LoginViewWrapper} />
+              <Route path="/register" exact component={RegisterViewWrapper} />
+              
               <Route
                 path="/dashboard/:type"
                 exact

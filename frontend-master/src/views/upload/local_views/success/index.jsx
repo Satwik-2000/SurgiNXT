@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
 import { UploadSuccessButton } from "../../buttons";
+import { AuthContext } from "../../../../contexts";
 import FileUploadModal from "../../fileupload";
 import "./style.scss";
 
 export default function UploadSuccessView({ clickedItems }) {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
+  const currentUser = useContext(AuthContext).currentUser;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
@@ -30,6 +32,8 @@ export default function UploadSuccessView({ clickedItems }) {
   useEffect(() => {
     if (caseNumber !== "") setClickWheelEnabled(true);
   }, [caseNumber]);
+
+  console.log(currentUser);
 
   return (
     <>
