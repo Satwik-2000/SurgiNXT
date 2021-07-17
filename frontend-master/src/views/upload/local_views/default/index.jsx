@@ -74,6 +74,8 @@ export default function UploadDefaultView() {
           <input 
             type = "text"
             placeholder = "Case Name"
+            value={caseNumber}
+            onChange={(e) => setCaseNumber(e.target.value)}
           />
         </div>} 
 
