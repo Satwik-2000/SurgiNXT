@@ -1,8 +1,24 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../contexts";
 
 import "./style.scss";
-export default function UploadSuccessButton() {
+export default function UploadSuccessButton({id, caseName}) {
+
+  const show = useContext(AuthContext).show;
+  const sendData = async() => {
+    console.log(id, caseName);
+    show(id, caseName);
+    
+    // axios
+    //   .post("http://203.110.240.168/api/surginxt/users/Registercase",{
+    //     user_uuid: id,
+    //     case_name_entered_by_user: caseName
+    //   })
+    //   .then((e) => {
+    //     console.log(e);
+    //   })
+  }
   return (
     <>
       <svg
@@ -13,7 +29,9 @@ export default function UploadSuccessButton() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <Link to="/dashboard/annotate">
-          <g className="center__btn">
+          <g className="center__btn"
+           onClick = {sendData}
+          >
             <path
               d="M444.5 302.5C444.5 379.269 382.49 441.5 306 441.5C229.51 441.5 167.5 379.269 167.5 302.5C167.5 225.731 229.51 163.5 306 163.5C382.49 163.5 444.5 225.731 444.5 302.5Z"
               fill="white"

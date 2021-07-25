@@ -45,7 +45,7 @@ export default function UploadSuccessView({ clickedItems }) {
             placeholder="Modify Existing Case"
             disabled={true}
             readOnly={true}
-            value={`Case Number : ${caseNumber}`}
+            value={`Case Name : ${caseNumber}`}
           />
         </div>
 
@@ -57,7 +57,9 @@ export default function UploadSuccessView({ clickedItems }) {
           }
         >
           <UploadSuccessButton
-            onCenterClick={() => handleButtonClick("entire")}
+            id = {currentUser.UserDetails["id"]}
+            caseName = {caseNumber}
+            onCenterClick={() => {handleButtonClick("entire");}}
             onTopLeftClick={() => handleButtonClick("operative")}
             onBottomLeftClick={() => handleButtonClick("pre-operative")}
             onBottomClick={() => handleButtonClick("annotations")}
