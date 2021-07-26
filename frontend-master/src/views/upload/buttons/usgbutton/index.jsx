@@ -23,7 +23,7 @@ export default function UploadUSGButton({
   onBottomRightClick,
   BottomRightSelected,
   goBack,
-  partialUpload,
+  // partialUpload,
 }) {
   return (
     <>
@@ -34,7 +34,7 @@ export default function UploadUSGButton({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {partialUpload === false && (
+        {/* {partialUpload === false && (
           <g className="entire__case__file">
             <path
               d="M538.5 402.5C538.5 479.269 476.49 541.5 400 541.5C323.51 541.5 261.5 479.269 261.5 402.5C261.5 325.731 323.51 263.5 400 263.5C476.49 263.5 538.5 325.731 538.5 402.5Z"
@@ -46,8 +46,8 @@ export default function UploadUSGButton({
               fill="#00218A"
             />
           </g>
-        )}
-        {partialUpload !== false && (
+        )} */}
+        {/* {partialUpload !== false && ( */}
           <g className="partial__progress">
             <path
               d="M543.5 403.5C543.5 480.269 481.49 542.5 405 542.5C328.51 542.5 266.5 480.269 266.5 403.5C266.5 326.731 328.51 264.5 405 264.5C481.49 264.5 543.5 326.731 543.5 403.5Z"
@@ -73,7 +73,7 @@ export default function UploadUSGButton({
               fill="#0A0A0A"
             /> 
           </g>
-        )}
+        )
         <g
           className={
             TopLeftSelected ? "operative__btn selected" : "operative__btn"

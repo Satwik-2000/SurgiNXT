@@ -9,15 +9,7 @@ export default function AnnotatePartialView () {
   const history = useHistory();
   const location = useLocation();
   // console.log(location.state);
-  
-  // const handleButtonClick = (which) => {
-  //   if (which === "usg") history.push("/upload/usg");
-  //   else if (which === "annotations") history.push("/upload/annotations");
-  //   // else if (which === "entire") history.push("/upload/annotations");
-  //   else if (which === lastClicked) setLastClicked(null);
-  //   else setLastClicked(which);
-  // };
- 
+
 
   return (
     <>
@@ -28,8 +20,6 @@ export default function AnnotatePartialView () {
           <AnnotatePartialButton
             button = {location.state}
             startafresh = {() => history.push("/segmentation")}
-            //  onTopLeftClick={() => handleButtonClick("operative")};
-            // goBack={() => history.push("/upload/partial")}
           />
         </div>
 

@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../contexts";
 
 import "./style.scss";
-export default function UploadSuccessButton({id, caseName}) {
+export default function UploadSuccessButton({id, caseName, file}) {
 
   const show = useContext(AuthContext).show;
   const sendData = async() => {
-    console.log(id, caseName);
-    show(id, caseName);
+    //console.log(id, ["zip"], caseName, file);
+    show(id, ["zip"], caseName, file);
     
     // axios
     //   .post("http://203.110.240.168/api/surginxt/users/Registercase",{
@@ -17,7 +17,7 @@ export default function UploadSuccessButton({id, caseName}) {
     //   })
     //   .then((e) => {
     //     console.log(e);
-    //   })
+    //   }) 
   }
   return (
     <>

@@ -9,41 +9,110 @@ export function useAuth() {
 
 export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  //const [caseId, setCaseId] = useState(null)
   const [loading, setLoading] = useState(true);
+  var count = [[], [], []]; //array to store the indexes of the items of each api group (refer to documentation)
 
-  async function show(id, caseName){
-    console.log(id, caseName);
+  async function uploadFile(id, caseId, clickedItems, upload_type, file, item) {
+    console.log(id, caseId, clickedItems,upload_type, file, item);
+
+    const formData = new FormData();
+    formData.append("user_uuid", id);
+    formData.append("case_id", caseId);
+    formData.append("upload_type", upload_type);
+    item.map((index) => {
+      formData.append(`${clickedItems[index]}`, file[index]);
+      //console.log(`${clickedItems[index]}`, file[index]);
+    })
     axios
-        .post(
-          `${process.env.REACT_APP_API}/users/Registercase`,{
-            user_uuid: id,
-            case_name_entered_by_user : caseName,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
-            },
-          }
-        )
-        .then((e) => {
-          console.log(e);
-          //setCurrentUser(e.data);
-        });
+      .post(`${process.env.REACT_APP_API}/upload`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+        },
+      })
+      .then((e) => {
+        console.log(e);
+        //setCurrentUser(e.data);
+      });
   }
 
-  async function register(email, password, firstname, lastname){
-    axios.post("http://203.110.240.168/api/surginxt/user/registration",{
-      email: email,
-      password : password,
-      first_name: firstname,
-      last_name: lastname,
-    })
-    .then((e) => {
-      console.log("AXIOS:", e);
-      // localStorage.setItem("auth_token", e.data?.token);
-      // localStorage.setItem("user_id", e.data?.id);
-      console.log(e.config.data);
-    })
+  async function show(id, clickedItems, caseName, files) {
+    console.log(id, clickedItems, caseName);
+    var upload_type = [];
+
+    clickedItems.map((item) => {
+      if (item === "zip") 
+      {
+        upload_type[0] = 0;
+        count[0] =[0];
+      }
+      else if (
+        item === "pre_operative_data" ||
+        item === "post_operative_data" ||
+        item === "operative_video"
+      ) {
+        count[0] = [...count[0], clickedItems.indexOf(item)];
+        upload_type[0] = 1;
+      } else if (item === "usg_report" || item === "usg_videos_images") {
+        count[1] = [...count[1], clickedItems.indexOf(item)];
+        upload_type[1] = 4;
+      } else if (
+        item === "segmented_video" ||
+        item === "hand_drawn_annotations" ||
+        item === "phase_annotation_video" ||
+        item === "audio_description_of_video" ||
+        item === "usg_annotations" ||
+        item === "pre_operative_annotations" ||
+        item === "post_operative_annotations"
+      ) {
+        count[2] = [...count[2], clickedItems.indexOf(item)];
+        upload_type[2] = 6;
+      }
+    });
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API}/users/Registercase`,
+        {
+          user_uuid: id,
+          case_name_entered_by_user: caseName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+          },
+        }
+      )
+      .then((e) => {
+        console.log(e);
+        // setCaseId(e.data.data["case_id"]);
+        // for (var i = 0; i <= 2; i++) {
+        //   if (!(count[i] === []))
+        //     //uploadFile(id, e.data.data["case_id"],clickedItems, upload_type, files);
+           console.log(count);
+        
+        count.map((item) => {
+          if (item.length>0)
+          uploadFile(id, e.data.data["case_id"],clickedItems, upload_type[count.indexOf(item)] , files, item);
+          })
+        
+      });
+  }
+
+  async function register(email, password, firstname, lastname) {
+    axios
+      .post("http://203.110.240.168/api/surginxt/user/registration", {
+        email: email,
+        password: password,
+        first_name: firstname,
+        last_name: lastname,
+      })
+      .then((e) => {
+        console.log("AXIOS:", e);
+        // localStorage.setItem("auth_token", e.data?.token);
+        // localStorage.setItem("user_id", e.data?.id);
+        console.log(e.config.data);
+      });
   }
 
   async function login(email, password) {
@@ -109,6 +178,7 @@ export default function AuthProvider({ children }) {
         login: login,
         register: register,
         show: show,
+        uploadFile: uploadFile,
       }}
     >
       {!loading && children}

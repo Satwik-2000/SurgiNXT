@@ -1,18 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
 import { UploadPartialButton } from "../../buttons";
 import FileUploadModal from "../../fileupload";
+import { AuthContext } from "../../../../contexts";
 import "./style.scss";
 
 export default function UploadPartialView() {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
+  const currentUser = useContext(AuthContext).currentUser;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
+  const location = useLocation();
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
-  const [clickedItems, setClickedItems] =
-    useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+  const [fileList, setFileList] = useContext(UploadContext).fileList;
 
   const handleButtonClick = (which) => {
     if (which === "usg") {
@@ -26,7 +29,7 @@ export default function UploadPartialView() {
   };
 
   const isSelected = (id) => {
-    console.log(`isSelected : ${id}  :  ${clickedItems}`);
+    //console.log(`isSelected : ${id}  :  ${clickedItems}`);
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
     // else if (lastClicked === id) return true;
 
@@ -36,19 +39,22 @@ export default function UploadPartialView() {
     setIsModalOpen(true);
   };
 
-  const handleUploadCallback = () => {
+  const handleUploadCallback = (file) => {
     if (lastClicked === "entire") {
-      history.push("/upload/success");
+      history.push({pathname :"/upload/success", component : file});
     } else {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
-      history.push("/upload/partial");
+      setFileList([...fileList, file])
+      history.push({pathname :"/upload/partial"});
     }
   };
 
   useEffect(() => {
     if (caseNumber !== "") setClickWheelEnabled(true);
   }, [caseNumber]);
+  
+  console.log(clickedItems);
 
   return (
     <>
@@ -72,18 +78,22 @@ export default function UploadPartialView() {
           }
         >
           <UploadPartialButton
+            id = {currentUser.UserDetails["id"]}
+            caseName = {caseNumber}
+            files = {fileList}
+            clickedItems = {clickedItems}
             onCenterClick={() => handleButtonClick("entire")}
-            onTopLeftClick={() => handleButtonClick("operative")}
-            onBottomLeftClick={() => handleButtonClick("pre-operative")}
+            onTopLeftClick={() => handleButtonClick("operative_video")}
+            onBottomLeftClick={() => handleButtonClick("pre_operative_data")}
             onBottomClick={() => handleButtonClick("annotations")}
             onTopRightClick={() => handleButtonClick("usg")}
-            onBottomRightClick={() => handleButtonClick("post-operative")}
+            onBottomRightClick={() => handleButtonClick("post_operative_data")}
             CenterSelected={isSelected("entire")}
-            TopLeftSelected={isSelected("operative")}
-            BottomLeftSelected={isSelected("pre-operative")}
+            TopLeftSelected={isSelected("operative_video")}
+            BottomLeftSelected={isSelected("pre_operative_data")}
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
-            BottomRightSelected={isSelected("post-operative")}
+            BottomRightSelected={isSelected("post_operative_data")}
           />
         </div>
 
