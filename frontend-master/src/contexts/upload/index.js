@@ -8,12 +8,14 @@ export const UploadContext = createContext();
 export const UploadContextProvider = (props) => {
   const [clickedItems, setClickedItems] = useState([]);
   const [caseNumber, setCaseNumber] = useState("");
+  const [fileList, setFileList] = useState([]);
 
   return (
     <UploadContext.Provider
       value={{
         clickedItems: [clickedItems, setClickedItems],
         caseNumber: [caseNumber, setCaseNumber],
+        fileList: [fileList, setFileList]
       }}
     >
       {props.children}

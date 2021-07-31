@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
 import { UploadSuccessButton } from "../../buttons";
 import { AuthContext } from "../../../../contexts";
-import FileUploadModal from "../../fileupload";
+//import { FileContext } from "../../fileupload";
 import "./style.scss";
 
 export default function UploadSuccessView({ clickedItems }) {
@@ -12,7 +12,10 @@ export default function UploadSuccessView({ clickedItems }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
+  const location = useLocation();
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
+  const [fileList, setFileList] = useContext(UploadContext).fileList;
+  // const files = useContext(FileContext).filestate;
 
   const handleButtonClick = (which) => {
     if (which === lastClicked) setLastClicked(null);
@@ -34,7 +37,8 @@ export default function UploadSuccessView({ clickedItems }) {
   }, [caseNumber]);
 
   console.log(currentUser);
-
+  //console.log(location.component);
+ 
   return (
     <>
       <div className="default__view">
@@ -59,6 +63,7 @@ export default function UploadSuccessView({ clickedItems }) {
           <UploadSuccessButton
             id = {currentUser.UserDetails["id"]}
             caseName = {caseNumber}
+            file = {fileList}
             onCenterClick={() => {handleButtonClick("entire");}}
             onTopLeftClick={() => handleButtonClick("operative")}
             onBottomLeftClick={() => handleButtonClick("pre-operative")}

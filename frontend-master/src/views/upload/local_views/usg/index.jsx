@@ -7,23 +7,24 @@ import "./style.scss";
 
 export default function UploadUSGView() {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
-  const [clickedItems, setClickedItems] =
-    useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
+  const [fileList, setFileList] = useContext(UploadContext).fileList;
 
   const handleButtonClick = (which) => {
-    if (which === "usg-report" || which === "usg-vid-img") {
+    if (which === "usg_report" || which === "usg_videos_images") {
       setIsModalOpen(true);
       setLastClicked(which);
     } else if (which === "usg") {
       setLastClicked("usg");
-      history.push("/upload/partial");
+      history.push({pathname :"/upload/partial"});
     } else if (which === lastClicked) setLastClicked(null);
     else setLastClicked(which);
   };
+  console.log(clickedItems);
 
   const isSelected = (id) => {
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
@@ -71,24 +72,27 @@ export default function UploadUSGView() {
   //   setIsModalOpen(true);
   // };
 
-  const uploadCallback = () => {
-    if (lastClicked === "usg-report") {
+  const uploadCallback = (file) => {
+    
+    setFileList([...fileList, file]);
+    if (lastClicked === "usg_report") {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
 
-      if (clickedItems?.includes("usg-vid-img")) {
-        setClickedItems([...clickedItems, "usg"]);
-        history.push("/upload/partial");
-      }
-    } else if (lastClicked === "usg-vid-img") {
+      // if (clickedItems?.includes("usg-vid-img")) {
+      //   setClickedItems([...clickedItems, "usg"]);
+      //   history.push({pathname :"/upload/partial"});
+      // }
+    } else if (lastClicked === "usg_videos_images") {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
 
-      if (clickedItems?.includes("usg-report")) {
-        setClickedItems([...clickedItems, "usg"]);
-        history.push("/upload/partial");
-      }
+      // if (clickedItems?.includes("usg-report")) {
+      //   setClickedItems([...clickedItems, "usg"]);
+      //   history.push({pathname :"/upload/partial"});
+      // }
     }
+    // history.push("/upload/usg");
   };
 
   useEffect(() => {
@@ -117,8 +121,8 @@ export default function UploadUSGView() {
           }
         >
           <UploadUSGButton
-            onLeftClick={() => handleButtonClick("usg-report")}
-            onRightClick={() => handleButtonClick("usg-vid-img")}
+            onLeftClick={() => handleButtonClick("usg_report")}
+            onRightClick={() => handleButtonClick("usg_videos_images")}
             onCenterClick={() => handleButtonClick("entire")}
             onTopLeftClick={() => handleButtonClick("operative")}
             onBottomLeftClick={() => handleButtonClick("pre-operative")}
@@ -126,19 +130,19 @@ export default function UploadUSGView() {
             onTopRightClick={() => {
               handleButtonClick("usg");
             }}
-            goBack={() => history.push("/upload/partial")}
+            goBack={() => history.push({pathname :"/upload/partial"})}
             onBottomRightClick={() => handleButtonClick("post-operative")}
             CenterSelected={isSelected("entire")}
             TopLeftSelected={isSelected("operative")}
-            isLeftSelected={isSelected("usg-report")}
-            isRightSelected={isSelected("usg-vid-img")}
-            isRightClicked={clickedItems?.includes("usg-vid-img")}
-            isLeftClicked={clickedItems?.includes("usg-report")}
+            isLeftSelected={isSelected("usg_report")}
+            isRightSelected={isSelected("usg_videos_images")}
+            isRightClicked={clickedItems?.includes("usg_videos_images")}
+            isLeftClicked={clickedItems?.includes("usg_report")}
             BottomLeftSelected={isSelected("pre-operative")}
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
             BottomRightSelected={isSelected("post-operative")}
-            partialUpload={shouldShowPercentageOrNot()}
+            //partialUpload={shouldShowPercentageOrNot()}
           />
         </div>
 

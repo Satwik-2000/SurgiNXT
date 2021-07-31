@@ -13,14 +13,18 @@ export default function FileUploadModal({
 }) {
   const history = useHistory();
   const fileInputRef = useRef(null);
+  const [filestate, setFileState] = useState({});
 
   const onFileInputChange = (event) => {
     const { files } = event.target;
+    setFileState(files[0])
+    console.log(filestate);
     // do something with your files...
   };
 
   const onTargetClick = () => {
     fileInputRef.current.click();
+    console.log(fileInputRef);
   }; 
 
   const handleCancel = () => {
@@ -28,8 +32,9 @@ export default function FileUploadModal({
   };
 
   const handleUpload = () => {
-    uploadCallback();
+    uploadCallback(filestate);
   };
+  //console.log(filestate);
 
   return (
     <Modal

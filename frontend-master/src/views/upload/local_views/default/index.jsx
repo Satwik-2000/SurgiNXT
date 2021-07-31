@@ -13,8 +13,8 @@ export default function UploadDefaultView() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
-  const [clickedItems, setClickedItems] =
-    useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+  const [fileList, setFileList] = useContext(UploadContext).fileList;
 
   const handleButtonClick = (which) => {
     if (which === "usg") history.push("/upload/usg");
@@ -36,12 +36,14 @@ export default function UploadDefaultView() {
     setIsModalOpen(true);
   };
 
-  const modalCallBack = () => {
+  const modalCallBack = (file) => {
     if (lastClicked === "entire") {
-      history.push("/upload/success");
+      setFileList([...fileList, file])
+      history.push({pathname :"/upload/success"});
     } else {
       setClickedItems([...clickedItems, lastClicked]);
-      history.push("/upload/partial");
+      setFileList([...fileList, file])
+      history.push({pathname :"/upload/partial"});
     }
   };
 
@@ -88,17 +90,17 @@ export default function UploadDefaultView() {
         >
           <UploadMainButton
             onCenterClick={() => {handleButtonClick("entire"); handleUploadClick()}}
-            onTopLeftClick={() => {handleButtonClick("operative") ;handleUploadClick()}}
-            onBottomLeftClick={() => {handleButtonClick("pre-operative");handleUploadClick()}}
+            onTopLeftClick={() => {handleButtonClick("operative_video") ;handleUploadClick()}}
+            onBottomLeftClick={() => {handleButtonClick("pre_operative_data");handleUploadClick()}}
             onBottomClick={() => handleButtonClick("annotations")}
             onTopRightClick={() => handleButtonClick("usg")}
-            onBottomRightClick={() => {handleButtonClick("post-operative");handleUploadClick() }}
+            onBottomRightClick={() => {handleButtonClick("post_operative_data");handleUploadClick() }}
             CenterSelected={isSelected("entire")}
-            TopLeftSelected={isSelected("operative")}
-            BottomLeftSelected={isSelected("pre-operative")}
+            TopLeftSelected={isSelected("operative_video")}
+            BottomLeftSelected={isSelected("pre_operative_data")}
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
-            BottomRightSelected={isSelected("post-operative")}
+            BottomRightSelected={isSelected("post_operative_data")}
           />
         </div>
 
@@ -111,7 +113,7 @@ export default function UploadDefaultView() {
           Upload Dataset
         </div>
       </div>
-
+ 
       <FileUploadModal
         isOpen={isModalOpen}
         // buttonName = {}
