@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
 import { UploadMainButton } from "../../buttons";
 import FileUploadModal from "../../fileupload";
+import ExistingCaseModal from "../../existingcasemodal";
 import { AuthContext } from "../../../../contexts";
 import "./style.scss";
 
@@ -11,10 +12,12 @@ export default function UploadDefaultView() {
   const currentUser = useContext(AuthContext).currentUser;
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [caseOpen, setCaseOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
   const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
   const [fileList, setFileList] = useContext(UploadContext).fileList;
+  
 
   const handleButtonClick = (which) => {
     if (which === "usg") history.push("/upload/usg");
@@ -31,6 +34,9 @@ export default function UploadDefaultView() {
     return false;
   };
 
+  const handleCaseModal = () => {
+    setCaseOpen(true);
+  }
 
   const handleUploadClick = () => {
     setIsModalOpen(true);
@@ -62,10 +68,11 @@ export default function UploadDefaultView() {
           <button
             type="button"
             className="dashboard__input"
+            onClick = {handleCaseModal}
             // placeholder="Modify Existing Case"
             // value={caseNumber}
             // onChange={(e) => setCaseNumber(e.target.value)}
-            >Modify Existing Case
+            >Modify Existing Case 
           </button>
           <div style = {{paddingRight: 10}}>/</div>
           <div className="dashboard__plus" onClick={() => setCaseNumber(" ")}>
@@ -116,9 +123,14 @@ export default function UploadDefaultView() {
  
       <FileUploadModal
         isOpen={isModalOpen}
-        // buttonName = {}
         closeCallback={() => setIsModalOpen(false)}
         uploadCallback={modalCallBack}
+      />
+
+      <ExistingCaseModal
+        isOpen={caseOpen}
+        closeCallback={() => setCaseOpen(false)}
+        //id = {currentUser.UserDetails["id"]}
       />
     </>
   );

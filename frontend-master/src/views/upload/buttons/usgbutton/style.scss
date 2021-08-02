@@ -1,37 +1,4 @@
-.upload__btn {
-  .center__btn {
-    cursor: pointer;
-    fill: #d5dafe;
-    transition: all ease-in-out 250ms;
-  }
 
-  .center__text {
-    transition: all ease-in-out 250ms;
-    fill: #00218a;
-  }
-
-  &:hover {
-    .center__btn {
-      fill: #00218a;
-      color: white;
-    }
-
-    .center__text {
-      fill: #ffffff;
-    }
-  }
-
-  &.selected {
-    .center__btn {
-      fill: #8ec951;
-      color:#00218a;
-    }
-
-    .center__text {
-      fill: #ffffff;
-    }
-  }
-}
 
 .usg__btn {
   cursor: pointer;
@@ -87,22 +54,22 @@
     transition: all ease-in-out 250ms;
   }
 
-  &:hover {
-    .btn__bg {
-      transition: all ease-in-out 250ms;
-      fill: #00218a;
-    }
+  // &:hover {
+  //   .btn__bg {
+  //     transition: all ease-in-out 250ms;
+  //     //fill: #00218a;
+  //   }
 
-    .btn__secondary {
-      transition: all ease-in-out 250ms;
-      fill: white;
-    }
+  //   .btn__secondary {
+  //     transition: all ease-in-out 250ms;
+  //     fill: white;
+  //   }
 
-    .btn__text {
-      fill: white;
-      transition: all ease-in-out 250ms;
-    }
-  }
+  //   .btn__text {
+  //     fill: white;
+  //     transition: all ease-in-out 250ms;
+  //   }
+  // }
 
   &.selected {
     .btn__bg {
@@ -139,6 +106,7 @@
     fill: #00218a;
     transition: all ease-in-out 250ms;
   }
+  
 
   &:hover {
     .btn__bg {
@@ -161,6 +129,23 @@
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      // fill: #00218A;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded{
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8b5e34;
     }
 
     .btn__secondary {
@@ -215,6 +200,23 @@
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      // fill: #00218A;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded{
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8b5e34;
     }
 
     .btn__secondary {

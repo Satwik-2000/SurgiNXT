@@ -5,6 +5,7 @@ import { UploadPartialButton } from "../../buttons";
 import FileUploadModal from "../../fileupload";
 import { AuthContext } from "../../../../contexts";
 import "./style.scss";
+import axios from "axios";
 
 export default function UploadPartialView() {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
@@ -13,9 +14,11 @@ export default function UploadPartialView() {
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
   const location = useLocation();
-  const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
-  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+  const [clickWheelEnabled, setClickWheelEnabled] = useState(true);
+  const [clickedItems, setClickedItems] =
+    useContext(UploadContext).clickedItems;
   const [fileList, setFileList] = useContext(UploadContext).fileList;
+  const [details, setDetails] = useContext(UploadContext).details;
 
   const handleButtonClick = (which) => {
     if (which === "usg") {
@@ -41,20 +44,60 @@ export default function UploadPartialView() {
 
   const handleUploadCallback = (file) => {
     if (lastClicked === "entire") {
-      history.push({pathname :"/upload/success", component : file});
+      history.push({ pathname: "/upload/success", component: file });
     } else {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
-      setFileList([...fileList, file])
-      history.push({pathname :"/upload/partial"});
+      setFileList([...fileList, file]);
+      history.push({ pathname: "/upload/partial" });
     }
   };
 
   useEffect(() => {
     if (caseNumber !== "") setClickWheelEnabled(true);
   }, [caseNumber]);
-  
-  console.log(clickedItems);
+
+  useEffect(() => {
+    check();
+    
+  }, []);
+
+  const isUploaded = (item) => {
+    if (details)
+    {
+      //console.log(details);
+      if (details.case_details[item]) return true
+      else return false
+    } 
+  }
+
+  const check = () => {
+    if (location.component) {
+      console.log(location.component["case_id"]);
+      setCaseNumber(location.component["case_name_entered_by_user"]);
+
+      axios
+        .post(
+          "http://203.110.240.168/api/surginxt/casedetailsforuser",
+          {
+            user_uuid: currentUser.UserDetails["id"],
+            case_id: location.component["case_id"],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+            },
+          }
+        )
+        .then((e) => {
+          //console.log(e.data);
+          setDetails(e.data);
+        });
+        
+    }
+  };
+
+  //console.log(details);
 
   return (
     <>
@@ -78,10 +121,10 @@ export default function UploadPartialView() {
           }
         >
           <UploadPartialButton
-            id = {currentUser.UserDetails["id"]}
-            caseName = {caseNumber}
-            files = {fileList}
-            clickedItems = {clickedItems}
+            id={currentUser.UserDetails["id"]}
+            caseName={caseNumber}
+            files={fileList}
+            clickedItems={clickedItems}
             onCenterClick={() => handleButtonClick("entire")}
             onTopLeftClick={() => handleButtonClick("operative_video")}
             onBottomLeftClick={() => handleButtonClick("pre_operative_data")}
@@ -94,6 +137,11 @@ export default function UploadPartialView() {
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
             BottomRightSelected={isSelected("post_operative_data")}
+            TopLeftUploaded = {isUploaded("operative_video")}
+            BottomLeftUploaded = {isUploaded("pre_operative_data")}
+            BottomUploaded = {isUploaded("annotations")}
+            TopRightUploaded = {isUploaded("usg_data")}
+            BottomRightUploaded = {isUploaded("post_operative_data")}
           />
         </div>
 
