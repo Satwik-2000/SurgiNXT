@@ -34,6 +34,8 @@ export default function UploadPartialView() {
   const isSelected = (id) => {
     //console.log(`isSelected : ${id}  :  ${clickedItems}`);
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
+    else if (id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true;
+    
     // else if (lastClicked === id) return true;
 
     return false;

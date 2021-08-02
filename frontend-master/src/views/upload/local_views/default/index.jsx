@@ -22,13 +22,13 @@ export default function UploadDefaultView() {
   const handleButtonClick = (which) => {
     if (which === "usg") history.push("/upload/usg");
     else if (which === "annotations") history.push("/upload/annotations");
-    // else if (which === "entire") history.push("/upload/annotations");
     else if (which === lastClicked) setLastClicked(null);
     else setLastClicked(which);
   };
 
   const isSelected = (id) => {
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
+    else if (id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true;
     else if (lastClicked === id) return true;
 
     return false;
@@ -95,6 +95,7 @@ export default function UploadDefaultView() {
               : "dashboard__button disabled"
           }
         >
+
           <UploadMainButton
             onCenterClick={() => {handleButtonClick("entire"); handleUploadClick()}}
             onTopLeftClick={() => {handleButtonClick("operative_video") ;handleUploadClick()}}
