@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../contexts";
+import { UploadContext } from "../../../../contexts";
 
 import "./style.scss";
 export default function PartialButton({
@@ -17,13 +18,19 @@ export default function PartialButton({
   TopRightSelected,
   onBottomRightClick,
   BottomRightSelected,
+  TopLeftUploaded,
+  BottomLeftUploaded,
+  BottomUploaded,
+  TopRightUploaded,
+  BottomRightUploaded,
 }) {
   const show = useContext(AuthContext).show;
   const uploadFile = useContext(AuthContext).uploadFile;
+  const [details, setDetails] = useContext(UploadContext).details;
   
   const sendData = async() => {
     console.log(files);
-    show(id, clickedItems, caseName, files);
+    show(id, clickedItems, caseName, files, details);
     //uploadFile(id, "1", files); 
   }
 
@@ -75,7 +82,7 @@ export default function PartialButton({
         </mask>
         <g
           className={
-            TopLeftSelected ? "operative__btn selected" : "operative__btn"
+            TopLeftSelected? "operative__btn selected ": TopLeftUploaded ? "operative__btn uploaded" : "operative__btn"
           }
           onClick={onTopLeftClick}
         >
@@ -106,7 +113,7 @@ export default function PartialButton({
           />
         </mask>
         <g
-          className={TopRightSelected ? "usg__btn selected" : "usg__btn"}
+          className={TopRightSelected?"usg__btn selected":TopRightUploaded ? "usg__btn uploaded" : "usg__btn"}
           onClick={onTopRightClick}
         >
           <path
@@ -137,8 +144,9 @@ export default function PartialButton({
         </mask>
         <g
           className={
-            BottomRightSelected
-              ? "post-operative__btn selected"
+            BottomRightSelected? "post-operative__btn selected":
+            BottomRightUploaded
+              ? "post-operative__btn uploaded"
               : "post-operative__btn"
           }
           onClick={onBottomRightClick}
@@ -171,7 +179,7 @@ export default function PartialButton({
         </mask>
         <g
           className={
-            BottomSelected ? "annotations__btn selected" : "annotations__btn"
+            BottomSelected?"annotations__btn selected":BottomUploaded ? "annotations__btn uploaded" : "annotations__btn"
           }
           onClick={onBottomClick}
         >
@@ -203,8 +211,9 @@ export default function PartialButton({
         </mask>
         <g
           className={
-            BottomLeftSelected
-              ? "pre-operative__btn selected"
+            BottomLeftSelected?"pre-operative__btn selected":
+            BottomLeftUploaded
+              ? "pre-operative__btn uploaded"
               : "pre-operative__btn"
           }
           onClick={onBottomLeftClick}

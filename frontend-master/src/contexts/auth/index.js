@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { UploadContext } from "../upload";
 
 export const AuthContext = React.createContext();
 
@@ -9,9 +10,11 @@ export function useAuth() {
 
 export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  //const [caseId, setCaseId] = useState(null)
   const [loading, setLoading] = useState(true);
   var count = [[], [], []]; //array to store the indexes of the items of each api group (refer to documentation)
+  const buttons = ["pre_operative_data", "post_operative_data", "operative_video", "annotations", "usg_data"]
+
+  
 
   async function uploadFile(id, caseId, clickedItems, upload_type, file, item) {
     console.log(id, caseId, clickedItems,upload_type, file, item);
@@ -36,8 +39,8 @@ export default function AuthProvider({ children }) {
       });
   }
 
-  async function show(id, clickedItems, caseName, files) {
-    console.log(id, clickedItems, caseName);
+  async function show(id, clickedItems, caseName, files, details) {
+    //console.log(details);
     var upload_type = [];
 
     clickedItems.map((item) => {
@@ -70,6 +73,27 @@ export default function AuthProvider({ children }) {
       }
     });
 
+    var uploaded = false;
+    if (details)
+    {      
+      buttons.map((item) => {
+        if (details.case_details[item])
+        uploaded = true;
+      })
+      
+
+      if (uploaded)
+      {
+        count.map((item) => {
+          if (item.length>0)
+          uploadFile(id, details.case["case_id"],clickedItems, upload_type[count.indexOf(item)] , files, item);
+          })
+      }
+    }
+    else newCase(id, clickedItems, caseName, count, files, upload_type);
+  }
+  
+  async function newCase(id, clickedItems, caseName, count, files, upload_type){
     axios
       .post(
         `${process.env.REACT_APP_API}/users/Registercase`,
@@ -97,6 +121,7 @@ export default function AuthProvider({ children }) {
           })
         
       });
+      
   }
 
   async function register(email, password, firstname, lastname) {
@@ -129,7 +154,8 @@ export default function AuthProvider({ children }) {
         console.log(currentUser);
       });
   }
-  //console.log(currentUser.UserDetails["group"]);
+  
+  
 
   async function logout() {}
 

@@ -7,9 +7,9 @@ export default function UploadUSGButton({
   onRightClick,
   isUSGClicked,
   isRightClicked,
-  isRightSelected,
+  isRightUploaded,
   isLeftClicked,
-  isLeftSelected,
+  isLeftUploaded,
   onCenterClick,
   onTopLeftClick,
   onBottomLeftClick,
@@ -210,11 +210,9 @@ export default function UploadUSGButton({
         </mask>
         <g
           className={
-            isLeftClicked
-              ? "usg__report__btn clicked"
-              : isLeftSelected
-              ? "usg__report__btn selected"
-              : "usg__report__btn"
+            isLeftUploaded? "usg__report__btn uploaded":isLeftClicked
+              ? "usg__report__btn clicked":
+               "usg__report__btn"
           }
           onClick={onLeftClick}
         >
@@ -245,11 +243,8 @@ export default function UploadUSGButton({
         </mask>
         <g
           className={
-            isRightClicked
-              ? "usg__vid__img clicked"
-              : isRightSelected
-              ? "usg__vid__img selected"
-              : "usg__vid__img"
+            isRightUploaded? "usg__vid__img uploaded":
+            isRightClicked? "usg__vid__img clicked": "usg__vid__img"
           }
           onClick={onRightClick}
         >
