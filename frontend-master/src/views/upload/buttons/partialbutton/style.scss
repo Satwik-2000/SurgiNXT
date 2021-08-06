@@ -1,40 +1,6 @@
-.upload__btn {
-  .center__btn {
-    cursor: pointer;
-    fill: #d5dafe;
-    transition: all ease-in-out 250ms;
-  }
-
-  .center__text {
-    transition: all ease-in-out 250ms;
-    fill: #00218a;
-  }
-
-  &:hover {
-    .center__btn {
-      fill: #00218a;
-      color: white;
-    }
-
-    .center__text {
-      fill: #ffffff;
-    }
-  }
-
-  &.selected {
-    .center__btn {
-      fill: #00218a;
-      color: white;
-    }
-
-    .center__text {
-      fill: #ffffff;
-    }
-  }
-}
-
 .usg__btn {
-  cursor: pointer;
+  &.partial
+  {cursor: pointer;
 
   .btn__bg {
     transition: all ease-in-out 250ms;
@@ -49,12 +15,12 @@
   .btn__text {
     fill: #00218a;
     transition: all ease-in-out 250ms;
-  }
+  }}
 
-  &.uploaded {
+  &.sub-uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #f0933c;
     }
 
     .btn__secondary {
@@ -67,12 +33,28 @@
       transition: all ease-in-out 250ms;
     }
   }
-  
-  &.uploaded:hover{
-    
+
+  &.uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -84,9 +66,7 @@
       fill: white;
       transition: all ease-in-out 250ms;
     }
-  
-}
-
+  }
 
   &.selected {
     .btn__bg {
@@ -103,12 +83,60 @@
       fill: #00218a;
       transition: all ease-in-out 250ms;
     }
+    &:hover {
+      .btn__bg {
+        transition: all ease-in-out 250ms;
+        fill: #8ec951;
+      }
+  
+      .btn__secondary {
+        transition: all ease-in-out 250ms;
+        fill: white;
+      }
+  
+      .btn__text {
+        fill: white;
+        transition: all ease-in-out 250ms;
+      }
+    }
+  }
+
+  &.sub {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #a0f14e;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+  &.sub:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #a0f14e;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
   }
 
   &:hover {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      ;
     }
 
     .btn__secondary {
@@ -141,10 +169,10 @@
     transition: all ease-in-out 250ms;
   }
 
-  &.uploaded{
+  &.partialuploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -153,31 +181,29 @@
     }
 
     .btn__text {
-       fill: #00218A;
+      fill: #00218a;
       transition: all ease-in-out 250ms;
     }
   }
 
-  &.uploaded:hover{
-    
-      .btn__bg {
-        transition: all ease-in-out 250ms;
-        fill: #8b5e34;
-      }
-  
-      .btn__secondary {
-        transition: all ease-in-out 250ms;
-        fill: white;
-      }
-  
-      .btn__text {
-        fill: white;
-        transition: all ease-in-out 250ms;
-      }
-    
+  &.partialuploaded:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
   }
 
-  &.selected {
+  &.partialselected {
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
@@ -192,9 +218,25 @@
       // fill: #00218A;
       transition: all ease-in-out 250ms;
     }
-  }  
+  }
+  &.partialselected:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
 
-  &:hover {
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.partial:hover {
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #00218a;
@@ -210,8 +252,6 @@
       transition: all ease-in-out 250ms;
     }
   }
-
-  
 }
 
 .pre-operative__btn {
@@ -232,10 +272,10 @@
     transition: all ease-in-out 250ms;
   }
 
-  &.uploaded {
+  &.partialuploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -249,11 +289,29 @@
     }
   }
 
-  &.uploaded:hover{
-    
+ 
+
+  &.partialselected {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.partialselected:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
     }
 
     .btn__secondary {
@@ -265,25 +323,29 @@
       fill: white;
       transition: all ease-in-out 250ms;
     }
-  
-}
+  }
 
-  &.selected{
-    .btn_bg{
-      transition: all ease-in-out 250ms;
-      fill: #8EC951;
-    }
-    .btn__text{
+  &.partial:hover {
+    .btn__bg {
       fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
       transition: all ease-in-out 250ms;
     }
   }
 
-  &:hover{
+  &.partialuploaded:hover {
     .btn__bg {
-      fill: #00218a;
       transition: all ease-in-out 250ms;
-      ;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -319,7 +381,7 @@
   &.uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -333,11 +395,10 @@
     }
   }
 
-  &.uploaded:hover{
-    
+  &.uploaded:hover {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -349,10 +410,9 @@
       fill: white;
       transition: all ease-in-out 250ms;
     }
-  
-}
+  }
 
-  &:hover{
+  &:hover {
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #00218a;
@@ -368,7 +428,7 @@
       transition: all ease-in-out 250ms;
     }
   }
-  &.selected{
+  &.selected {
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
@@ -404,10 +464,10 @@
     transition: all ease-in-out 250ms;
   }
 
-  &.uploaded {
+  &.partialuploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -421,11 +481,29 @@
     }
   }
 
-  &.uploaded:hover{
-    
+ 
+
+  &.partialselected {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.partialselected:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
     }
 
     .btn__secondary {
@@ -437,24 +515,29 @@
       fill: white;
       transition: all ease-in-out 250ms;
     }
-  
-}
+  }
 
-  &.selected{
-    .btn_bg{
-      transition: all ease-in-out 250ms;
-      fill: #8EC951;
-    }
-    .btn__text{
+  &.partial:hover {
+    .btn__bg {
       fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
       transition: all ease-in-out 250ms;
     }
   }
 
-  &:hover{
+  &.partialuploaded:hover {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      ;
+      fill: #b4671f;
     }
 
     .btn__secondary {

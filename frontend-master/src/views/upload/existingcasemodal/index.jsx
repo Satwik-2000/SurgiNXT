@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Modal from "react-responsive-modal-scroll";
 import { FileFolderIcon, UploadIcon } from "../../../assets";
 import {ListGroup} from "react-bootstrap";
-import { AuthContext } from "../../../contexts";
+import { AuthContext, UploadContext } from "../../../contexts";
 import axios from "axios";
 
 
@@ -18,12 +18,15 @@ export default function ExistingCaseModal({
   const [caseList, setCaseList] = useState([]);
   const [clicked, setClicked] = useState("")
   const currentUser = useContext(AuthContext).currentUser;
+  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+
 
   const handleCancel = () => {
     closeCallback();
   };  
 
   function alertClicked() {
+    setClickedItems([]);
     axios.
     get("http://203.110.240.168/api/surginxt/allcasesforuser/" + currentUser.UserDetails["id"],
     {

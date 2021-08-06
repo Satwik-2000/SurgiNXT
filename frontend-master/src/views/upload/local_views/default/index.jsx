@@ -15,9 +15,9 @@ export default function UploadDefaultView() {
   const [caseOpen, setCaseOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
-  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] =
+    useContext(UploadContext).clickedItems;
   const [fileList, setFileList] = useContext(UploadContext).fileList;
-  
 
   const handleButtonClick = (which) => {
     if (which === "usg") history.push("/upload/usg");
@@ -28,7 +28,12 @@ export default function UploadDefaultView() {
 
   const isSelected = (id) => {
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
-    else if (id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true;
+    else if (
+      id === "usg" &&
+      clickedItems?.includes("usg_report") &&
+      clickedItems?.includes("usg_videos_images")
+    )
+      return true;
     else if (lastClicked === id) return true;
 
     return false;
@@ -36,7 +41,7 @@ export default function UploadDefaultView() {
 
   const handleCaseModal = () => {
     setCaseOpen(true);
-  }
+  };
 
   const handleUploadClick = () => {
     setIsModalOpen(true);
@@ -44,49 +49,57 @@ export default function UploadDefaultView() {
 
   const modalCallBack = (file) => {
     if (lastClicked === "entire") {
-      setFileList([...fileList, file])
-      history.push({pathname :"/upload/success"});
+      setFileList([...fileList, file]);
+      history.push({ pathname: "/upload/success" });
     } else {
       setClickedItems([...clickedItems, lastClicked]);
-      setFileList([...fileList, file])
-      history.push({pathname :"/upload/partial"});
+      setFileList([...fileList, file]);
+      history.push({ pathname: "/upload/partial" });
     }
   };
 
   useEffect(() => {
     if (caseNumber === undefined || caseNumber === "")
       setClickWheelEnabled(false);
-    else setClickWheelEnabled(true);
+    //else setClickWheelEnabled(true);
   }, [caseNumber]);
 
   console.log(currentUser);
+  console.log(caseNumber);
 
   return (
     <>
       <div className="default__view">
-        {!clickWheelEnabled ? <div className="dashboard__input__wrapper">
-          <button
-            type="button"
-            className="dashboard__input"
-            onClick = {handleCaseModal}
-            // placeholder="Modify Existing Case"
-            // value={caseNumber}
-            // onChange={(e) => setCaseNumber(e.target.value)}
-            >Modify Existing Case 
-          </button>
-          <div style = {{paddingRight: 10}}>/</div>
-          <div className="dashboard__plus" onClick={() => setCaseNumber(" ")}>
-            +
+        {caseNumber==="" ? (
+          <div className="dashboard__input__wrapper">
+            <button
+              type="button"
+              className="dashboard__input"
+              onClick={handleCaseModal}
+              // placeholder="Modify Existing Case"
+              // value={caseNumber}
+              // onChange={(e) => setCaseNumber(e.target.value)}
+            >
+              Modify Existing Case
+            </button>
+            <div style={{ paddingRight: 10 }}>/</div>
+            <div className="dashboard__plus" 
+            onClick={() => setCaseNumber(" ")}
+            >
+              +
+            </div>
           </div>
-        </div> : 
-        <div className = "dashboard__input__wrapper">
-          <input 
-            type = "text"
-            placeholder = "Case Name"
-            value={caseNumber}
-            onChange={(e) => setCaseNumber(e.target.value)}
-          />
-        </div>} 
+        ) : (
+          <div className="dashboard__input__wrapper">
+            <input
+              placeholder="Enter Case Name"
+              type="text"
+              // value={caseNumber}
+              //onClick = {() => }
+              onChange={(e) => {setCaseNumber(e.target.value); setClickWheelEnabled(true)}}
+            />
+          </div>
+        )}
 
         <div
           className={
@@ -95,14 +108,25 @@ export default function UploadDefaultView() {
               : "dashboard__button disabled"
           }
         >
-
           <UploadMainButton
-            onCenterClick={() => {handleButtonClick("entire"); handleUploadClick()}}
-            onTopLeftClick={() => {handleButtonClick("operative_video") ;handleUploadClick()}}
-            onBottomLeftClick={() => {handleButtonClick("pre_operative_data");handleUploadClick()}}
+            onCenterClick={() => {
+              handleButtonClick("entire");
+              handleUploadClick();
+            }}
+            onTopLeftClick={() => {
+              handleButtonClick("operative_video");
+              handleUploadClick();
+            }}
+            onBottomLeftClick={() => {
+              handleButtonClick("pre_operative_data");
+              handleUploadClick();
+            }}
             onBottomClick={() => handleButtonClick("annotations")}
             onTopRightClick={() => handleButtonClick("usg")}
-            onBottomRightClick={() => {handleButtonClick("post_operative_data");handleUploadClick() }}
+            onBottomRightClick={() => {
+              handleButtonClick("post_operative_data");
+              handleUploadClick();
+            }}
             CenterSelected={isSelected("entire")}
             TopLeftSelected={isSelected("operative_video")}
             BottomLeftSelected={isSelected("pre_operative_data")}
@@ -121,7 +145,7 @@ export default function UploadDefaultView() {
           Upload Dataset
         </div>
       </div>
- 
+
       <FileUploadModal
         isOpen={isModalOpen}
         closeCallback={() => setIsModalOpen(false)}

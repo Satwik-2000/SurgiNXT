@@ -26,7 +26,7 @@ export const UploadContextProvider = (props) => {
     })
     //history.push("/upload/partial");
 }
-console.log(caseList);
+
 
   return (
     <UploadContext.Provider

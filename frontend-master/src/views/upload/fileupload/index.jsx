@@ -32,6 +32,8 @@ export default function FileUploadModal({
   };
 
   const handleUpload = () => {
+    //console.log(filestate);
+    //if (Object.keys(filestate).length === 0) console.log("empty ");
     uploadCallback(filestate);
   };
   //console.log(filestate);

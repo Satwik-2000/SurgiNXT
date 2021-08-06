@@ -15,10 +15,10 @@ export default function UploadPartialView() {
   const history = useHistory();
   const location = useLocation();
   const [clickWheelEnabled, setClickWheelEnabled] = useState(true);
-  const [clickedItems, setClickedItems] =
-    useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
   const [fileList, setFileList] = useContext(UploadContext).fileList;
   const [details, setDetails] = useContext(UploadContext).details;
+  const [button, setButton] = useState(false);
 
   const handleButtonClick = (which) => {
     if (which === "usg") {
@@ -34,8 +34,13 @@ export default function UploadPartialView() {
   const isSelected = (id) => {
     //console.log(`isSelected : ${id}  :  ${clickedItems}`);
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
-    else if (id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true;
-    
+    else if (
+      id === "usg" &&
+      clickedItems?.includes("usg_report") &&
+      clickedItems?.includes("usg_videos_images")
+    )
+      return true;
+
     // else if (lastClicked === id) return true;
 
     return false;
@@ -61,22 +66,24 @@ export default function UploadPartialView() {
 
   useEffect(() => {
     check();
-    
   }, []);
 
   const isUploaded = (item) => {
-    if (details)
-    {
-      //console.log(details);
-      if (details.case_details[item]) return true
-      else return false
-    } 
-  }
+    if (details) {
+      if (item === "usg_data"){
+        if (details.case_usg["usg_report"] && details.case_usg["usg_videos_images"])
+        return true;
+      }
+      else if (details.case_details[item]) return true;
+      else return false;
+    }
+  };
 
   const check = () => {
     if (location.component) {
       console.log(location.component["case_id"]);
       setCaseNumber(location.component["case_name_entered_by_user"]);
+      
 
       axios
         .post(
@@ -94,12 +101,12 @@ export default function UploadPartialView() {
         .then((e) => {
           //console.log(e.data);
           setDetails(e.data);
+          setButton(true)
         });
-        
     }
   };
 
-  //console.log(details);
+  console.log(button);
 
   return (
     <>
@@ -108,10 +115,11 @@ export default function UploadPartialView() {
           <input
             type="text"
             className="dashboard__input"
-            placeholder="Modify Existing Case"
-            disabled={true}
-            readOnly={true}
-            value={`Case Name : ${caseNumber}`}
+            placeholder="Enter Case Name"
+            disabled = {button}
+            readOnly = {button}
+            value={caseNumber}
+            onChange={(e) => setCaseNumber(e.target.value)}
           />
         </div>
 
@@ -127,6 +135,7 @@ export default function UploadPartialView() {
             caseName={caseNumber}
             files={fileList}
             clickedItems={clickedItems}
+            details = {details}
             onCenterClick={() => handleButtonClick("entire")}
             onTopLeftClick={() => handleButtonClick("operative_video")}
             onBottomLeftClick={() => handleButtonClick("pre_operative_data")}
@@ -139,11 +148,11 @@ export default function UploadPartialView() {
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
             BottomRightSelected={isSelected("post_operative_data")}
-            TopLeftUploaded = {isUploaded("operative_video")}
-            BottomLeftUploaded = {isUploaded("pre_operative_data")}
-            BottomUploaded = {isUploaded("annotations")}
-            TopRightUploaded = {isUploaded("usg_data")}
-            BottomRightUploaded = {isUploaded("post_operative_data")}
+            TopLeftUploaded={isUploaded("operative_video")}
+            BottomLeftUploaded={isUploaded("pre_operative_data")}
+            BottomUploaded={isUploaded("annotations")}
+            TopRightUploaded={isUploaded("usg_data")}
+            BottomRightUploaded={isUploaded("post_operative_data")}
           />
         </div>
 

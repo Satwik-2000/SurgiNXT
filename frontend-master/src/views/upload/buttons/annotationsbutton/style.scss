@@ -33,52 +33,52 @@
   }
 }
 
-.usg__btn,
-.pre-operative__btn,
-.operative__btn,
-.annotation__btn,
-.post-operative__btn {
-  cursor: pointer;
+// .usg__btn,
+// .pre-operative__btn,
+// .operative__btn,
+// .annotation__btn,
+// .post-operative__btn {
+//   cursor: pointer;
 
-  .btn__bg {
-    transition: all ease-in-out 250ms;
-    fill: #d5dafe;
-  }
+//   .btn__bg {
+//     transition: all ease-in-out 250ms;
+//     fill: #d5dafe;
+//   }
 
-  .btn__secondary {
-    transition: all ease-in-out 250ms;
-    fill: white;
-  }
+//   .btn__secondary {
+//     transition: all ease-in-out 250ms;
+//     fill: white;
+//   }
 
-  .btn__text {
-    fill: #00218a;
-    transition: all ease-in-out 250ms;
-  }
+//   .btn__text {
+//     fill: #00218a;
+//     transition: all ease-in-out 250ms;
+//   }
 
-  &:hover{
-    .btn__bg {
-      transition: all ease-in-out 250ms;
-      fill: #00218a;
-    }
+//   // &:hover{
+//   //   .btn__bg {
+//   //     transition: all ease-in-out 250ms;
+//   //     fill: #00218a;
+//   //   }
 
-    .btn__secondary {
-      transition: all ease-in-out 250ms;
-      fill: white;
-    }
+//   //   .btn__secondary {
+//   //     transition: all ease-in-out 250ms;
+//   //     fill: white;
+//   //   }
 
-    .btn__text {
-      fill: white;
-      transition: all ease-in-out 250ms;
-    }
-  }
-  &.selected{
-    .btn__bg{
-      transition: all ease-in-out 250ms;
-      fill: #8ec951;
+//   //   .btn__text {
+//   //     fill: white;
+//   //     transition: all ease-in-out 250ms;
+//   //   }
+//   // }
+//   &.selected{
+//     .btn__bg{
+//       transition: all ease-in-out 250ms;
+//       fill: #8ec951;
       
-    }
-  }
-}
+//     }
+//   }
+// }
 
 .segmented__btn,
 .hand-annotation__btn,

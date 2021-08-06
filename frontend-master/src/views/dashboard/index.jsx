@@ -60,11 +60,11 @@ export default function DashboardViewWrapper() {
     if (response === 9)
       type = "annotations";
     if (response === 7)
-      type = "annotate";
-    if (response === 6)
-      type = "upload";
-    if (response === 8)
       type = "stats";
+    if (response === 6)
+      type = "annotate";
+    if (response === 8)
+      type = "upload";
 
   // switch(response){
   //   case 6: type = "annotate";
