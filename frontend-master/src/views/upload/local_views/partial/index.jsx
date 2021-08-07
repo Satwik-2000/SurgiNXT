@@ -106,8 +106,6 @@ export default function UploadPartialView() {
     }
   };
 
-  console.log(button);
-
   return (
     <>
       <div className="default__view">
