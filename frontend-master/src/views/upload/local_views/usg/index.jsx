@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UploadContext } from "../../../../contexts";
-import { UploadOperativeButton, UploadUSGButton } from "../../buttons";
+import { UploadUSGButton } from "../../buttons";
 import FileUploadModal from "../../fileupload";
 import "./style.scss";
 
 export default function UploadUSGView() {
   const [caseNumber, setCaseNumber] = useContext(UploadContext).caseNumber;
-  const [clickedItems, setClickedItems] = useContext(UploadContext).clickedItems;
+  const [clickedItems, setClickedItems] =
+    useContext(UploadContext).clickedItems;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
@@ -21,7 +22,7 @@ export default function UploadUSGView() {
       setLastClicked(which);
     } else if (which === "usg") {
       setLastClicked("usg");
-      history.push({pathname :"/upload/partial"});
+      history.push({ pathname: "/upload/partial" });
     } else if (which === lastClicked) setLastClicked(null);
     else setLastClicked(which);
   };
@@ -29,25 +30,24 @@ export default function UploadUSGView() {
 
   const isSelected = (id) => {
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
+    else if(id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true
     else if (lastClicked === id) return true;
+    
 
     return false;
   };
 
   const isUploaded = (item) => {
-    if (details)
-    {
+    if (details) {
       console.log(details);
-      if (details.case_usg[item]) return true
-      else return false
-    } 
-  }
+      
+      if (details.case_usg[item]) return true;
+      else if (details.case_details[item]) return true;
+      else return false;
+    }
+  };
 
-
-
-  
   const uploadCallback = (file) => {
-    
     setFileList([...fileList, file]);
     if (lastClicked === "usg_report") {
       setClickedItems([...clickedItems, lastClicked]);
@@ -97,26 +97,22 @@ export default function UploadUSGView() {
           <UploadUSGButton
             onLeftClick={() => handleButtonClick("usg_report")}
             onRightClick={() => handleButtonClick("usg_videos_images")}
-            onCenterClick={() => handleButtonClick("entire")}
-            onTopLeftClick={() => handleButtonClick("operative")}
-            onBottomLeftClick={() => handleButtonClick("pre-operative")}
-            onBottomClick={() => handleButtonClick("annotations")}
-            onTopRightClick={() => {
-              handleButtonClick("usg");
-            }}
-            goBack={() => history.push({pathname :"/upload/partial"})}
-            onBottomRightClick={() => handleButtonClick("post-operative")}
-            CenterSelected={isSelected("entire")}
-            TopLeftSelected={isSelected("operative")}
+            goBack={() => history.push({ pathname: "/upload/partial" })}
+            TopLeftSelected={isSelected("operative_video")}
             isRightClicked={clickedItems?.includes("usg_videos_images")}
             isLeftClicked={clickedItems?.includes("usg_report")}
-            isLeftUploaded = {isUploaded("usg_report")}
-            isRightUploaded = {isUploaded("usg_videos_images")}
-            BottomLeftSelected={isSelected("pre-operative")}
+            isLeftUploaded={isUploaded("usg_report")}
+            isRightUploaded={isUploaded("usg_videos_images")}
+            BottomLeftSelected={isSelected("pre_operative_data")}
             BottomSelected={isSelected("annotations")}
             TopRightSelected={isSelected("usg")}
-            BottomRightSelected={isSelected("post-operative")}
-
+            BottomRightSelected={isSelected("post_operative_data")}
+            TopLeftUploaded={isUploaded("operative_video")}
+            BottomLeftUploaded={isUploaded("pre_operative_data")}
+            BottomUploaded={isUploaded("annotations")}
+            TopRightUploaded={isUploaded("usg_data")}
+            BottomRightUploaded={isUploaded("post_operative_data")}
+            clickedItems = {clickedItems}
           />
         </div>
 

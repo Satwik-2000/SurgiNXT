@@ -1,11 +1,9 @@
-
-
 .usg__btn {
   cursor: pointer;
 
   .btn__bg {
     transition: all ease-in-out 250ms;
-    fill: #d5dafe;
+    fill: #00218a;
   }
 
   .btn__secondary {
@@ -14,8 +12,58 @@
   }
 
   .btn__text {
-    fill: #00218a;
+    fill: white;
     transition: all ease-in-out 250ms;
+  }
+
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+  &.sub-uploaded {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #f0b074;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
   }
 
   &:hover {
@@ -54,27 +102,27 @@
     transition: all ease-in-out 250ms;
   }
 
-  // &:hover {
-  //   .btn__bg {
-  //     transition: all ease-in-out 250ms;
-  //     //fill: #00218a;
-  //   }
-
-  //   .btn__secondary {
-  //     transition: all ease-in-out 250ms;
-  //     fill: white;
-  //   }
-
-  //   .btn__text {
-  //     fill: white;
-  //     transition: all ease-in-out 250ms;
-  //   }
-  // }
-
   &.selected {
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -106,7 +154,39 @@
     fill: #00218a;
     transition: all ease-in-out 250ms;
   }
-  
+  &.uploaded {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      // fill: #00218A;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: white;
+      transition: all ease-in-out 250ms;
+    }
+  }
 
   &:hover {
     .btn__bg {
@@ -129,23 +209,6 @@
     .btn__bg {
       transition: all ease-in-out 250ms;
       fill: #8ec951;
-    }
-
-    .btn__secondary {
-      transition: all ease-in-out 250ms;
-      fill: white;
-    }
-
-    .btn__text {
-      // fill: #00218A;
-      transition: all ease-in-out 250ms;
-    }
-  }
-
-  &.uploaded{
-    .btn__bg {
-      transition: all ease-in-out 250ms;
-      fill: #8b5e34;
     }
 
     .btn__secondary {
@@ -177,7 +240,6 @@
     fill: #00218a;
     transition: all ease-in-out 250ms;
   }
-  
 
   &:hover {
     .btn__bg {
@@ -213,10 +275,10 @@
     }
   }
 
-  &.uploaded{
+  &.uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #8b5e34;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -249,10 +311,10 @@
     transition: all ease-in-out 250ms;
   }
 
-  &:hover {
+  &.uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #00218a;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -261,7 +323,24 @@
     }
 
     .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded:hover {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
       fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
       transition: all ease-in-out 250ms;
     }
   }
@@ -284,11 +363,10 @@
     fill: #00218a;
     transition: all ease-in-out 250ms;
   }
-
-  &:hover {
+  &.uploaded {
     .btn__bg {
       transition: all ease-in-out 250ms;
-      fill: #00218a;
+      fill: #b4671f;
     }
 
     .btn__secondary {
@@ -318,8 +396,56 @@
       transition: all ease-in-out 250ms;
     }
   }
+ 
 }
 
-  
+.pre-operative__btn {
+  .btn__bg {
+    transition: all ease-in-out 250ms;
+    fill: #d5dafe;
+  }
 
+  .btn__secondary {
+    transition: all ease-in-out 250ms;
+    fill: white;
+  }
 
+  .btn__text {
+    fill: #00218a;
+    transition: all ease-in-out 250ms;
+  }
+
+  &.selected {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #8ec951;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+
+  &.uploaded {
+    .btn__bg {
+      transition: all ease-in-out 250ms;
+      fill: #b4671f;
+    }
+
+    .btn__secondary {
+      transition: all ease-in-out 250ms;
+      fill: white;
+    }
+
+    .btn__text {
+      fill: #00218a;
+      transition: all ease-in-out 250ms;
+    }
+  }
+}

@@ -109,16 +109,14 @@ export default function AuthProvider({ children }) {
       )
       .then((e) => {
         console.log(e);
-        // setCaseId(e.data.data["case_id"]);
-        // for (var i = 0; i <= 2; i++) {
-        //   if (!(count[i] === []))
-        //     //uploadFile(id, e.data.data["case_id"],clickedItems, upload_type, files);
-           console.log(count);
+        if(e.data["data"] === "Case Name already exist please give a new name") alert("Case name already exists. Please enter a new name")
         
-        count.map((item) => {
-          if (item.length>0)
-          uploadFile(id, e.data.data["case_id"],clickedItems, upload_type[count.indexOf(item)] , files, item);
+        else{
+          count.map((item) => {
+            if (item.length>0)
+            uploadFile(id, e.data.data["case_id"],clickedItems, upload_type[count.indexOf(item)] , files, item);
           })
+        }
         
       });
       

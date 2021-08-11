@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   UploadDashboardBackground,
@@ -12,6 +12,7 @@ import {
   UploadUSGView,
   UploadAnnotationsView,
 } from "./local_views";
+import { UploadContext } from "../../contexts";
 
 import "./style.scss";
 
