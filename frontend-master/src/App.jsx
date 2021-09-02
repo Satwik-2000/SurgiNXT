@@ -26,7 +26,7 @@ const App = () => {
               <Route path="/login" exact component={LoginViewWrapper} />
               <Route path="/register" exact component={RegisterViewWrapper} />
               
-              <Route
+              <PrivateRoute
                 path="/dashboard/:type"
                 exact
                 component={DashboardViewWrapper}

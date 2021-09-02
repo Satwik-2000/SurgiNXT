@@ -103,6 +103,7 @@ export default function UploadAnnotationsView() {
             isAnnotationsSelected={true} //Annotations
             onAnnotationsClick={true} //Annotations
             goBack={()=>history.push('/upload/partial')}
+            clickedItems = {clickedItems}
           />
         </div>
 
