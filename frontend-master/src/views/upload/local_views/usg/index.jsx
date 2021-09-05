@@ -53,20 +53,14 @@ export default function UploadUSGView() {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
 
-      // if (clickedItems?.includes("usg-vid-img")) {
-      //   setClickedItems([...clickedItems, "usg"]);
-      //   history.push({pathname :"/upload/partial"});
-      // }
+      
     } else if (lastClicked === "usg_videos_images") {
       setClickedItems([...clickedItems, lastClicked]);
       setIsModalOpen(false);
 
-      // if (clickedItems?.includes("usg-report")) {
-      //   setClickedItems([...clickedItems, "usg"]);
-      //   history.push({pathname :"/upload/partial"});
-      // }
+     
     }
-    // history.push("/upload/usg");
+    
   };
 
   useEffect(() => {
