@@ -13,43 +13,45 @@ export default function UploadAnnotationsView() {
   const [lastClicked, setLastClicked] = useState(null);
   const history = useHistory();
   const [clickWheelEnabled, setClickWheelEnabled] = useState(false);
+  const [details, setDetails] = useContext(UploadContext).details;
 
-  const handleButtonClick = (which) => {
-    if (which === "usg-report" || which === "usg-vid-img") {
-      setIsModalOpen(true);
-      setLastClicked(which);
-    } else if (which === lastClicked) setLastClicked(null);
-    else setLastClicked(which);
+  const isUploaded = (item) => {
+    if (details) {
+      console.log(details);
+      
+      if (item === "usg" && details.case_usg["usg_videos_images"] && details.case_usg["usg_report"]) return true;
+      else if (details.case_details[item]) return true;
+      else return false;
+    }
   };
 
   const isSelected = (id) => {
     if (clickedItems?.length > 0 && clickedItems?.includes(id)) return true;
+    else if(id === "usg" && clickedItems?.includes("usg_report") && clickedItems?.includes("usg_videos_images")) return true
     else if (lastClicked === id) return true;
 
     return false;
   };
-  // const handleUploadClick = () => {
-  //   setIsModalOpen(true);
-  // };
+  
 
   const uploadCallback = () => {
-    if (lastClicked === "usg-report") {
-      setClickedItems([...clickedItems, lastClicked]);
-      setIsModalOpen(false);
+    // if (lastClicked === "usg-report") {
+    //   setClickedItems([...clickedItems, lastClicked]);
+    //   setIsModalOpen(false);
 
-      if (clickedItems?.includes("usg-vid-img")) {
-        setClickedItems([...clickedItems, "usg"]);
-        history.push("/upload");
-      }
-    } else if (lastClicked === "usg-vid-img") {
-      setClickedItems([...clickedItems, lastClicked]);
-      setIsModalOpen(false);
+    //   if (clickedItems?.includes("usg-vid-img")) {
+    //     setClickedItems([...clickedItems, "usg"]);
+    //     history.push("/upload");
+    //   }
+    // } else if (lastClicked === "usg-vid-img") {
+    //   setClickedItems([...clickedItems, lastClicked]);
+    //   setIsModalOpen(false);
 
-      if (clickedItems?.includes("usg-report")) {
-        setClickedItems([...clickedItems, "usg"]);
-        history.push("/upload");
-      }
-    }
+    //   if (clickedItems?.includes("usg-report")) {
+    //     setClickedItems([...clickedItems, "usg"]);
+    //     history.push("/upload");
+    //   }
+    // }
   };
 
   useEffect(() => {
@@ -92,17 +94,19 @@ export default function UploadAnnotationsView() {
             onPhaseAnnotationClick={isSelected("phase-annotation")}
             isHanddrawnAnnotationSelected={isSelected("hand-drawn")}
             onHanddrawnAnnotationClick={isSelected("hand-drawn")}
-            isOperativeSelected={isSelected("operative")}
-            onOperativeClick={isSelected("operative")}
+
+            isOperativeSelected={isSelected("operative_video")}
+            isOperativeUploaded = {isUploaded("operative_video")}
             isUSGSelected={isSelected("usg")}
-            onUSGClick={isSelected("usg")}
-            isPreOperativeSelected={isSelected("pre-operative")}
-            onPreOperativeClick={isSelected("pre-operative")}
-            isPostOperativeSelected={isSelected("post-operative")}
-            onPostOperativeClick={isSelected("post-operative")}
+            isUSGUploaded={isUploaded("usg")}            
+            isPreOperativeSelected={isSelected("pre_operative_data")}
+            isPreOperativeUploaded={isUploaded("pre_operative_data")}            
+            isPostOperativeSelected={isSelected("post_operative_data")}
+            isPostOperativeUploaded={isUploaded("post_operative_data")}
             isAnnotationsSelected={true} //Annotations
             onAnnotationsClick={true} //Annotations
             goBack={()=>history.push('/upload/partial')}
+            clickedItems = {clickedItems}
           />
         </div>
 

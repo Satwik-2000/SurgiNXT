@@ -25,7 +25,7 @@ export default function RegisterViewWrapper() {
 
   return (
     <div className="register__wrapper">
-      {/* <section className="form__section"> */}
+      
       <img src={heading} alt="heading" className="heading"></img>
 
       <div className="leftside">
